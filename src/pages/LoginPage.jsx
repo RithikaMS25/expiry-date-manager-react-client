@@ -32,6 +32,7 @@ const LoginPage = () => {
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });
+      localStorage.setItem('token', data.token);
       // Store user info / token if needed, for now just redirect
       navigate('/dashboard');
     } catch (err) {
@@ -64,7 +65,7 @@ const LoginPage = () => {
                 <span className="text-sm">{error}</span>
               </div>
             )}
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700">Email address</label>
               <div className="mt-1">

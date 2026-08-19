@@ -3,10 +3,17 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://expiry-date-e
 export const apiCall = async (endpoint, options = {}) => {
   const url = `${API_BASE_URL}${endpoint}`;
 
+  const token = localStorage.getItem('token');
+
   const headers = {
     'Content-Type': 'application/json',
     ...options.headers,
   };
+
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
 
   const config = {
     ...options,
